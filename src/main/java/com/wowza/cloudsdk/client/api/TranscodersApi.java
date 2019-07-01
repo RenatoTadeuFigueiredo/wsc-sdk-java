@@ -64,6 +64,9 @@ import com.wowza.cloudsdk.client.model.TranscoderCreateInput;
 import com.wowza.cloudsdk.client.model.IndexTranscoder;
 import com.wowza.cloudsdk.client.model.Transcoders;
 import com.wowza.cloudsdk.client.model.Uptimes;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -98,7 +101,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderCall(TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createTranscoderCall(TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = transcoder;
 
         // create path and map variables
@@ -124,10 +127,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -140,7 +143,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createTranscoderValidateBeforeCall(TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createTranscoderValidateBeforeCall(TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoder' is set
         if (transcoder == null) {
@@ -148,7 +151,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = createTranscoderCall(transcoder, progressListener, progressRequestListener);
+        Call call = createTranscoderCall(transcoder, progressListener, progressRequestListener);
         return call;
 
     }
@@ -186,7 +189,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateInput> createTranscoderWithHttpInfo(TranscoderCreateInput transcoder) throws ApiException {
-        com.squareup.okhttp.Call call = createTranscoderValidateBeforeCall(transcoder, null, null);
+        Call call = createTranscoderValidateBeforeCall(transcoder, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -199,7 +202,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderAsync(TranscoderCreateInput transcoder, final ApiCallback<TranscoderCreateInput> callback) throws ApiException {
+    public Call createTranscoderAsync(TranscoderCreateInput transcoder, final ApiCallback<TranscoderCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -220,7 +223,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createTranscoderValidateBeforeCall(transcoder, progressListener, progressRequestListener);
+        Call call = createTranscoderValidateBeforeCall(transcoder, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -234,7 +237,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderOutputCall(String transcoderId, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createTranscoderOutputCall(String transcoderId, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = output;
 
         // create path and map variables
@@ -261,10 +264,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -277,7 +280,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createTranscoderOutputValidateBeforeCall(String transcoderId, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createTranscoderOutputValidateBeforeCall(String transcoderId, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -290,7 +293,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = createTranscoderOutputCall(transcoderId, output, progressListener, progressRequestListener);
+        Call call = createTranscoderOutputCall(transcoderId, output, progressListener, progressRequestListener);
         return call;
 
     }
@@ -332,7 +335,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputCreateInput> createTranscoderOutputWithHttpInfo(String transcoderId, OutputCreateInput output) throws ApiException {
-        com.squareup.okhttp.Call call = createTranscoderOutputValidateBeforeCall(transcoderId, output, null, null);
+        Call call = createTranscoderOutputValidateBeforeCall(transcoderId, output, null, null);
         Type localVarReturnType = new TypeToken<OutputCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -346,7 +349,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderOutputAsync(String transcoderId, OutputCreateInput output, final ApiCallback<OutputCreateInput> callback) throws ApiException {
+    public Call createTranscoderOutputAsync(String transcoderId, OutputCreateInput output, final ApiCallback<OutputCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -367,7 +370,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createTranscoderOutputValidateBeforeCall(transcoderId, output, progressListener, progressRequestListener);
+        Call call = createTranscoderOutputValidateBeforeCall(transcoderId, output, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -382,7 +385,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = outputStreamTarget;
 
         // create path and map variables
@@ -410,10 +413,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -426,7 +429,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -444,7 +447,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = createTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, outputStreamTarget, progressListener, progressRequestListener);
+        Call call = createTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, outputStreamTarget, progressListener, progressRequestListener);
         return call;
 
     }
@@ -489,7 +492,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputStreamTargetCreateInput> createTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget) throws ApiException {
-        com.squareup.okhttp.Call call = createTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, outputStreamTarget, null, null);
+        Call call = createTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, outputStreamTarget, null, null);
         Type localVarReturnType = new TypeToken<OutputStreamTargetCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -504,7 +507,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget, final ApiCallback<OutputStreamTargetCreateInput> callback) throws ApiException {
+    public Call createTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, OutputStreamTargetCreateInput outputStreamTarget, final ApiCallback<OutputStreamTargetCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -525,7 +528,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, outputStreamTarget, progressListener, progressRequestListener);
+        Call call = createTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, outputStreamTarget, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputStreamTargetCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -539,7 +542,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderPropertyCall(String transcoderId, TranscoderPropertyCreateInput property, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createTranscoderPropertyCall(String transcoderId, TranscoderPropertyCreateInput property, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = property;
 
         // create path and map variables
@@ -566,10 +569,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -582,7 +585,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createTranscoderPropertyValidateBeforeCall(String transcoderId, TranscoderPropertyCreateInput property, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createTranscoderPropertyValidateBeforeCall(String transcoderId, TranscoderPropertyCreateInput property, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -595,7 +598,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = createTranscoderPropertyCall(transcoderId, property, progressListener, progressRequestListener);
+        Call call = createTranscoderPropertyCall(transcoderId, property, progressListener, progressRequestListener);
         return call;
 
     }
@@ -637,7 +640,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderPropertyCreateInput> createTranscoderPropertyWithHttpInfo(String transcoderId, TranscoderPropertyCreateInput property) throws ApiException {
-        com.squareup.okhttp.Call call = createTranscoderPropertyValidateBeforeCall(transcoderId, property, null, null);
+        Call call = createTranscoderPropertyValidateBeforeCall(transcoderId, property, null, null);
         Type localVarReturnType = new TypeToken<TranscoderPropertyCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -651,7 +654,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createTranscoderPropertyAsync(String transcoderId, TranscoderPropertyCreateInput property, final ApiCallback<TranscoderPropertyCreateInput> callback) throws ApiException {
+    public Call createTranscoderPropertyAsync(String transcoderId, TranscoderPropertyCreateInput property, final ApiCallback<TranscoderPropertyCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -672,7 +675,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createTranscoderPropertyValidateBeforeCall(transcoderId, property, progressListener, progressRequestListener);
+        Call call = createTranscoderPropertyValidateBeforeCall(transcoderId, property, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderPropertyCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -685,7 +688,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -712,10 +715,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -728,7 +731,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -736,7 +739,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = deleteTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -759,7 +762,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteTranscoderValidateBeforeCall(id, null, null);
+        Call call = deleteTranscoderValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -771,7 +774,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteTranscoderAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -792,7 +795,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = deleteTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -805,7 +808,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderOutputCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteTranscoderOutputCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -833,10 +836,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -849,7 +852,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteTranscoderOutputValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteTranscoderOutputValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -862,7 +865,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteTranscoderOutputCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = deleteTranscoderOutputCall(transcoderId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -887,7 +890,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteTranscoderOutputWithHttpInfo(String transcoderId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteTranscoderOutputValidateBeforeCall(transcoderId, id, null, null);
+        Call call = deleteTranscoderOutputValidateBeforeCall(transcoderId, id, null, null);
         return apiClient.execute(call);
     }
 
@@ -900,7 +903,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderOutputAsync(String transcoderId, String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteTranscoderOutputAsync(String transcoderId, String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -921,7 +924,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteTranscoderOutputValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = deleteTranscoderOutputValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -935,7 +938,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -964,10 +967,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -980,7 +983,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -998,7 +1001,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = deleteTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1025,7 +1028,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, String streamTargetId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
+        Call call = deleteTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
         return apiClient.execute(call);
     }
 
@@ -1039,7 +1042,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1060,7 +1063,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = deleteTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -1073,7 +1076,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderPropertyCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteTranscoderPropertyCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1101,10 +1104,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1117,7 +1120,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteTranscoderPropertyValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteTranscoderPropertyValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -1130,7 +1133,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteTranscoderPropertyCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = deleteTranscoderPropertyCall(transcoderId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1155,7 +1158,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteTranscoderPropertyWithHttpInfo(String transcoderId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteTranscoderPropertyValidateBeforeCall(transcoderId, id, null, null);
+        Call call = deleteTranscoderPropertyValidateBeforeCall(transcoderId, id, null, null);
         return apiClient.execute(call);
     }
 
@@ -1168,7 +1171,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteTranscoderPropertyAsync(String transcoderId, String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteTranscoderPropertyAsync(String transcoderId, String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1189,7 +1192,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteTranscoderPropertyValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = deleteTranscoderPropertyValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -1201,7 +1204,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call disableAllStreamTargetsTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call disableAllStreamTargetsTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1228,10 +1231,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1244,7 +1247,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call disableAllStreamTargetsTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call disableAllStreamTargetsTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1252,7 +1255,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = disableAllStreamTargetsTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = disableAllStreamTargetsTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1290,7 +1293,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateStreamTargetState> disableAllStreamTargetsTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = disableAllStreamTargetsTranscoderValidateBeforeCall(id, null, null);
+        Call call = disableAllStreamTargetsTranscoderValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateStreamTargetState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1303,7 +1306,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call disableAllStreamTargetsTranscoderAsync(String id, final ApiCallback<TranscoderCreateStreamTargetState> callback) throws ApiException {
+    public Call disableAllStreamTargetsTranscoderAsync(String id, final ApiCallback<TranscoderCreateStreamTargetState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1324,7 +1327,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = disableAllStreamTargetsTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = disableAllStreamTargetsTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateStreamTargetState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1339,7 +1342,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call disableTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call disableTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1368,10 +1371,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1384,7 +1387,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call disableTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call disableTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -1402,7 +1405,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = disableTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = disableTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1445,7 +1448,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamTargetCreateState> disableTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, String streamTargetId) throws ApiException {
-        com.squareup.okhttp.Call call = disableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
+        Call call = disableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
         Type localVarReturnType = new TypeToken<StreamTargetCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1460,7 +1463,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call disableTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<StreamTargetCreateState> callback) throws ApiException {
+    public Call disableTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<StreamTargetCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1481,7 +1484,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = disableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = disableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamTargetCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1494,7 +1497,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call enableAllStreamTargetsTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call enableAllStreamTargetsTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1521,10 +1524,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1537,7 +1540,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call enableAllStreamTargetsTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call enableAllStreamTargetsTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1545,7 +1548,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = enableAllStreamTargetsTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = enableAllStreamTargetsTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1583,7 +1586,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateStreamTargetState> enableAllStreamTargetsTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = enableAllStreamTargetsTranscoderValidateBeforeCall(id, null, null);
+        Call call = enableAllStreamTargetsTranscoderValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateStreamTargetState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1596,7 +1599,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call enableAllStreamTargetsTranscoderAsync(String id, final ApiCallback<TranscoderCreateStreamTargetState> callback) throws ApiException {
+    public Call enableAllStreamTargetsTranscoderAsync(String id, final ApiCallback<TranscoderCreateStreamTargetState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1617,7 +1620,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = enableAllStreamTargetsTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = enableAllStreamTargetsTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateStreamTargetState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1632,7 +1635,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call enableTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call enableTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1661,10 +1664,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1677,7 +1680,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call enableTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call enableTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -1695,7 +1698,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = enableTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = enableTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1738,7 +1741,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamTargetCreateState> enableTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, String streamTargetId) throws ApiException {
-        com.squareup.okhttp.Call call = enableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
+        Call call = enableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
         Type localVarReturnType = new TypeToken<StreamTargetCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1753,7 +1756,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call enableTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<StreamTargetCreateState> callback) throws ApiException {
+    public Call enableTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<StreamTargetCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1774,7 +1777,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = enableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = enableTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamTargetCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1789,7 +1792,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call indexUptimesCall(String transcoderId, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call indexUptimesCall(String transcoderId, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1820,10 +1823,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1836,7 +1839,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call indexUptimesValidateBeforeCall(String transcoderId, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call indexUptimesValidateBeforeCall(String transcoderId, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -1844,7 +1847,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = indexUptimesCall(transcoderId, page, perPage, progressListener, progressRequestListener);
+        Call call = indexUptimesCall(transcoderId, page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1887,7 +1890,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Uptimes> indexUptimesWithHttpInfo(String transcoderId, Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = indexUptimesValidateBeforeCall(transcoderId, page, perPage, null, null);
+        Call call = indexUptimesValidateBeforeCall(transcoderId, page, perPage, null, null);
         Type localVarReturnType = new TypeToken<Uptimes>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1902,7 +1905,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call indexUptimesAsync(String transcoderId, Integer page, Integer perPage, final ApiCallback<Uptimes> callback) throws ApiException {
+    public Call indexUptimesAsync(String transcoderId, Integer page, Integer perPage, final ApiCallback<Uptimes> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1923,7 +1926,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = indexUptimesValidateBeforeCall(transcoderId, page, perPage, progressListener, progressRequestListener);
+        Call call = indexUptimesValidateBeforeCall(transcoderId, page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Uptimes>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1937,7 +1940,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderOutputOutputStreamTargetsCall(String transcoderId, String outputId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listTranscoderOutputOutputStreamTargetsCall(String transcoderId, String outputId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1965,10 +1968,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1981,7 +1984,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listTranscoderOutputOutputStreamTargetsValidateBeforeCall(String transcoderId, String outputId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listTranscoderOutputOutputStreamTargetsValidateBeforeCall(String transcoderId, String outputId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -1994,7 +1997,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = listTranscoderOutputOutputStreamTargetsCall(transcoderId, outputId, progressListener, progressRequestListener);
+        Call call = listTranscoderOutputOutputStreamTargetsCall(transcoderId, outputId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2034,7 +2037,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputStreamTargets> listTranscoderOutputOutputStreamTargetsWithHttpInfo(String transcoderId, String outputId) throws ApiException {
-        com.squareup.okhttp.Call call = listTranscoderOutputOutputStreamTargetsValidateBeforeCall(transcoderId, outputId, null, null);
+        Call call = listTranscoderOutputOutputStreamTargetsValidateBeforeCall(transcoderId, outputId, null, null);
         Type localVarReturnType = new TypeToken<OutputStreamTargets>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2048,7 +2051,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderOutputOutputStreamTargetsAsync(String transcoderId, String outputId, final ApiCallback<OutputStreamTargets> callback) throws ApiException {
+    public Call listTranscoderOutputOutputStreamTargetsAsync(String transcoderId, String outputId, final ApiCallback<OutputStreamTargets> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2069,7 +2072,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listTranscoderOutputOutputStreamTargetsValidateBeforeCall(transcoderId, outputId, progressListener, progressRequestListener);
+        Call call = listTranscoderOutputOutputStreamTargetsValidateBeforeCall(transcoderId, outputId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputStreamTargets>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2082,7 +2085,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderOutputsCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listTranscoderOutputsCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2109,10 +2112,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2125,7 +2128,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listTranscoderOutputsValidateBeforeCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listTranscoderOutputsValidateBeforeCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -2133,7 +2136,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = listTranscoderOutputsCall(transcoderId, progressListener, progressRequestListener);
+        Call call = listTranscoderOutputsCall(transcoderId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2170,7 +2173,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Outputs> listTranscoderOutputsWithHttpInfo(String transcoderId) throws ApiException {
-        com.squareup.okhttp.Call call = listTranscoderOutputsValidateBeforeCall(transcoderId, null, null);
+        Call call = listTranscoderOutputsValidateBeforeCall(transcoderId, null, null);
         Type localVarReturnType = new TypeToken<Outputs>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2183,7 +2186,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderOutputsAsync(String transcoderId, final ApiCallback<Outputs> callback) throws ApiException {
+    public Call listTranscoderOutputsAsync(String transcoderId, final ApiCallback<Outputs> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2204,7 +2207,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listTranscoderOutputsValidateBeforeCall(transcoderId, progressListener, progressRequestListener);
+        Call call = listTranscoderOutputsValidateBeforeCall(transcoderId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Outputs>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2217,7 +2220,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderPropertiesCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listTranscoderPropertiesCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2244,10 +2247,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2260,7 +2263,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listTranscoderPropertiesValidateBeforeCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listTranscoderPropertiesValidateBeforeCall(String transcoderId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -2268,7 +2271,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = listTranscoderPropertiesCall(transcoderId, progressListener, progressRequestListener);
+        Call call = listTranscoderPropertiesCall(transcoderId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2305,7 +2308,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderProperties> listTranscoderPropertiesWithHttpInfo(String transcoderId) throws ApiException {
-        com.squareup.okhttp.Call call = listTranscoderPropertiesValidateBeforeCall(transcoderId, null, null);
+        Call call = listTranscoderPropertiesValidateBeforeCall(transcoderId, null, null);
         Type localVarReturnType = new TypeToken<TranscoderProperties>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2318,7 +2321,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderPropertiesAsync(String transcoderId, final ApiCallback<TranscoderProperties> callback) throws ApiException {
+    public Call listTranscoderPropertiesAsync(String transcoderId, final ApiCallback<TranscoderProperties> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2339,7 +2342,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listTranscoderPropertiesValidateBeforeCall(transcoderId, progressListener, progressRequestListener);
+        Call call = listTranscoderPropertiesValidateBeforeCall(transcoderId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderProperties>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2352,7 +2355,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderRecordingsCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listTranscoderRecordingsCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2379,10 +2382,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2395,7 +2398,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listTranscoderRecordingsValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listTranscoderRecordingsValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2403,7 +2406,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = listTranscoderRecordingsCall(id, progressListener, progressRequestListener);
+        Call call = listTranscoderRecordingsCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2440,7 +2443,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateRecordings> listTranscoderRecordingsWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = listTranscoderRecordingsValidateBeforeCall(id, null, null);
+        Call call = listTranscoderRecordingsValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateRecordings>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2453,7 +2456,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderRecordingsAsync(String id, final ApiCallback<TranscoderCreateRecordings> callback) throws ApiException {
+    public Call listTranscoderRecordingsAsync(String id, final ApiCallback<TranscoderCreateRecordings> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2474,7 +2477,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listTranscoderRecordingsValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = listTranscoderRecordingsValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateRecordings>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2487,7 +2490,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderSchedulesCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listTranscoderSchedulesCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2514,10 +2517,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2530,7 +2533,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listTranscoderSchedulesValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listTranscoderSchedulesValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2538,7 +2541,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = listTranscoderSchedulesCall(id, progressListener, progressRequestListener);
+        Call call = listTranscoderSchedulesCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2575,7 +2578,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Schedules> listTranscoderSchedulesWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = listTranscoderSchedulesValidateBeforeCall(id, null, null);
+        Call call = listTranscoderSchedulesValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<Schedules>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2588,7 +2591,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listTranscoderSchedulesAsync(String id, final ApiCallback<Schedules> callback) throws ApiException {
+    public Call listTranscoderSchedulesAsync(String id, final ApiCallback<Schedules> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2609,7 +2612,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listTranscoderSchedulesValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = listTranscoderSchedulesValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Schedules>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2624,7 +2627,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listTranscodersCall(String filter, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listTranscodersCall(String filter, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2656,10 +2659,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2672,10 +2675,10 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listTranscodersValidateBeforeCall(String filter, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listTranscodersValidateBeforeCall(String filter, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listTranscodersCall(filter, page, perPage, progressListener, progressRequestListener);
+        Call call = listTranscodersCall(filter, page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2718,7 +2721,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Transcoders> listTranscodersWithHttpInfo(String filter, Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listTranscodersValidateBeforeCall(filter, page, perPage, null, null);
+        Call call = listTranscodersValidateBeforeCall(filter, page, perPage, null, null);
         Type localVarReturnType = new TypeToken<Transcoders>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2733,7 +2736,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listTranscodersAsync(String filter, Integer page, Integer perPage, final ApiCallback<Transcoders> callback) throws ApiException {
+    public Call listTranscodersAsync(String filter, Integer page, Integer perPage, final ApiCallback<Transcoders> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2754,7 +2757,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listTranscodersValidateBeforeCall(filter, page, perPage, progressListener, progressRequestListener);
+        Call call = listTranscodersValidateBeforeCall(filter, page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Transcoders>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2767,7 +2770,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call resetTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call resetTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2794,10 +2797,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2810,7 +2813,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call resetTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call resetTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -2818,7 +2821,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = resetTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = resetTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2855,7 +2858,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateState> resetTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = resetTranscoderValidateBeforeCall(id, null, null);
+        Call call = resetTranscoderValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2868,7 +2871,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call resetTranscoderAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
+    public Call resetTranscoderAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2889,7 +2892,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = resetTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = resetTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2904,7 +2907,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call restartTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call restartTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2933,10 +2936,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -2949,7 +2952,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call restartTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call restartTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -2967,7 +2970,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = restartTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = restartTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3010,7 +3013,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamTargetCreateState> restartTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, String streamTargetId) throws ApiException {
-        com.squareup.okhttp.Call call = restartTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
+        Call call = restartTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
         Type localVarReturnType = new TypeToken<StreamTargetCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3025,7 +3028,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call restartTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<StreamTargetCreateState> callback) throws ApiException {
+    public Call restartTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<StreamTargetCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3046,7 +3049,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = restartTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = restartTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamTargetCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3059,7 +3062,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3086,10 +3089,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3102,7 +3105,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3110,7 +3113,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3147,7 +3150,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateInput> showTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderValidateBeforeCall(id, null, null);
+        Call call = showTranscoderValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3160,7 +3163,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderAsync(String id, final ApiCallback<TranscoderCreateInput> callback) throws ApiException {
+    public Call showTranscoderAsync(String id, final ApiCallback<TranscoderCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3181,7 +3184,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3195,7 +3198,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderOutputCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderOutputCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3223,10 +3226,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3239,7 +3242,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderOutputValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderOutputValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -3252,7 +3255,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderOutputCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = showTranscoderOutputCall(transcoderId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3292,7 +3295,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputCreateInput> showTranscoderOutputWithHttpInfo(String transcoderId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderOutputValidateBeforeCall(transcoderId, id, null, null);
+        Call call = showTranscoderOutputValidateBeforeCall(transcoderId, id, null, null);
         Type localVarReturnType = new TypeToken<OutputCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3306,7 +3309,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderOutputAsync(String transcoderId, String id, final ApiCallback<OutputCreateInput> callback) throws ApiException {
+    public Call showTranscoderOutputAsync(String transcoderId, String id, final ApiCallback<OutputCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3327,7 +3330,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderOutputValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = showTranscoderOutputValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3342,7 +3345,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3371,10 +3374,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3387,7 +3390,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -3405,7 +3408,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = showTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3448,7 +3451,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputStreamTargetInput> showTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, String streamTargetId) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
+        Call call = showTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, null, null);
         Type localVarReturnType = new TypeToken<OutputStreamTargetInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3463,7 +3466,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<OutputStreamTargetInput> callback) throws ApiException {
+    public Call showTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, final ApiCallback<OutputStreamTargetInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3484,7 +3487,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
+        Call call = showTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputStreamTargetInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3498,7 +3501,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderPropertyCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderPropertyCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3526,10 +3529,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3542,7 +3545,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderPropertyValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderPropertyValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -3555,7 +3558,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderPropertyCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = showTranscoderPropertyCall(transcoderId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3595,7 +3598,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderPropertyCreateInput> showTranscoderPropertyWithHttpInfo(String transcoderId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderPropertyValidateBeforeCall(transcoderId, id, null, null);
+        Call call = showTranscoderPropertyValidateBeforeCall(transcoderId, id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderPropertyCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3609,7 +3612,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderPropertyAsync(String transcoderId, String id, final ApiCallback<TranscoderPropertyCreateInput> callback) throws ApiException {
+    public Call showTranscoderPropertyAsync(String transcoderId, String id, final ApiCallback<TranscoderPropertyCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3630,7 +3633,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderPropertyValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = showTranscoderPropertyValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderPropertyCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3643,7 +3646,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3670,10 +3673,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3686,7 +3689,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3694,7 +3697,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderStateCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderStateCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3731,7 +3734,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateState> showTranscoderStateWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderStateValidateBeforeCall(id, null, null);
+        Call call = showTranscoderStateValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3744,7 +3747,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderStateAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
+    public Call showTranscoderStateAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3765,7 +3768,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderStateValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderStateValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3778,7 +3781,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderStatsCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderStatsCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3805,10 +3808,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3821,7 +3824,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderStatsValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderStatsValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3829,7 +3832,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderStatsCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderStatsCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3866,7 +3869,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateShmMetrics> showTranscoderStatsWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderStatsValidateBeforeCall(id, null, null);
+        Call call = showTranscoderStatsValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateShmMetrics>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3879,7 +3882,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderStatsAsync(String id, final ApiCallback<TranscoderCreateShmMetrics> callback) throws ApiException {
+    public Call showTranscoderStatsAsync(String id, final ApiCallback<TranscoderCreateShmMetrics> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3900,7 +3903,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderStatsValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderStatsValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateShmMetrics>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3913,7 +3916,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderThumbnailUrlCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showTranscoderThumbnailUrlCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3940,10 +3943,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -3956,7 +3959,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showTranscoderThumbnailUrlValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showTranscoderThumbnailUrlValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3964,7 +3967,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showTranscoderThumbnailUrlCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderThumbnailUrlCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4001,7 +4004,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateThumbnail> showTranscoderThumbnailUrlWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showTranscoderThumbnailUrlValidateBeforeCall(id, null, null);
+        Call call = showTranscoderThumbnailUrlValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateThumbnail>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4014,7 +4017,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showTranscoderThumbnailUrlAsync(String id, final ApiCallback<TranscoderCreateThumbnail> callback) throws ApiException {
+    public Call showTranscoderThumbnailUrlAsync(String id, final ApiCallback<TranscoderCreateThumbnail> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4035,7 +4038,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showTranscoderThumbnailUrlValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showTranscoderThumbnailUrlValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateThumbnail>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4049,7 +4052,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showUptimeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showUptimeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4077,10 +4080,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4093,7 +4096,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showUptimeValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showUptimeValidateBeforeCall(String transcoderId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -4106,7 +4109,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showUptimeCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = showUptimeCall(transcoderId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4146,7 +4149,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateUptime> showUptimeWithHttpInfo(String transcoderId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = showUptimeValidateBeforeCall(transcoderId, id, null, null);
+        Call call = showUptimeValidateBeforeCall(transcoderId, id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateUptime>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4160,7 +4163,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showUptimeAsync(String transcoderId, String id, final ApiCallback<TranscoderCreateUptime> callback) throws ApiException {
+    public Call showUptimeAsync(String transcoderId, String id, final ApiCallback<TranscoderCreateUptime> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4181,7 +4184,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showUptimeValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
+        Call call = showUptimeValidateBeforeCall(transcoderId, id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateUptime>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4196,7 +4199,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showUptimeMetricsCurrentCall(String transcoderId, String id, String fields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showUptimeMetricsCurrentCall(String transcoderId, String id, String fields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4226,10 +4229,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4242,7 +4245,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showUptimeMetricsCurrentValidateBeforeCall(String transcoderId, String id, String fields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showUptimeMetricsCurrentValidateBeforeCall(String transcoderId, String id, String fields, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -4255,7 +4258,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showUptimeMetricsCurrentCall(transcoderId, id, fields, progressListener, progressRequestListener);
+        Call call = showUptimeMetricsCurrentCall(transcoderId, id, fields, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4284,7 +4287,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LimitsResponse> showUptimeMetricsCurrentWithHttpInfo(String transcoderId, String id, String fields) throws ApiException {
-        com.squareup.okhttp.Call call = showUptimeMetricsCurrentValidateBeforeCall(transcoderId, id, fields, null, null);
+        Call call = showUptimeMetricsCurrentValidateBeforeCall(transcoderId, id, fields, null, null);
         Type localVarReturnType = new TypeToken<LimitsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4299,7 +4302,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showUptimeMetricsCurrentAsync(String transcoderId, String id, String fields, final ApiCallback<LimitsResponse> callback) throws ApiException {
+    public Call showUptimeMetricsCurrentAsync(String transcoderId, String id, String fields, final ApiCallback<LimitsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4320,7 +4323,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showUptimeMetricsCurrentValidateBeforeCall(transcoderId, id, fields, progressListener, progressRequestListener);
+        Call call = showUptimeMetricsCurrentValidateBeforeCall(transcoderId, id, fields, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LimitsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4337,7 +4340,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showUptimeMetricsHistoricCall(String transcoderId, String id, String fields, String from, String to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showUptimeMetricsHistoricCall(String transcoderId, String id, String fields, String from, String to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4371,10 +4374,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4387,7 +4390,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showUptimeMetricsHistoricValidateBeforeCall(String transcoderId, String id, String fields, String from, String to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showUptimeMetricsHistoricValidateBeforeCall(String transcoderId, String id, String fields, String from, String to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -4400,7 +4403,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showUptimeMetricsHistoricCall(transcoderId, id, fields, from, to, progressListener, progressRequestListener);
+        Call call = showUptimeMetricsHistoricCall(transcoderId, id, fields, from, to, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4433,7 +4436,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LimitsResponse> showUptimeMetricsHistoricWithHttpInfo(String transcoderId, String id, String fields, String from, String to) throws ApiException {
-        com.squareup.okhttp.Call call = showUptimeMetricsHistoricValidateBeforeCall(transcoderId, id, fields, from, to, null, null);
+        Call call = showUptimeMetricsHistoricValidateBeforeCall(transcoderId, id, fields, from, to, null, null);
         Type localVarReturnType = new TypeToken<LimitsResponse>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4450,7 +4453,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showUptimeMetricsHistoricAsync(String transcoderId, String id, String fields, String from, String to, final ApiCallback<LimitsResponse> callback) throws ApiException {
+    public Call showUptimeMetricsHistoricAsync(String transcoderId, String id, String fields, String from, String to, final ApiCallback<LimitsResponse> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4471,7 +4474,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showUptimeMetricsHistoricValidateBeforeCall(transcoderId, id, fields, from, to, progressListener, progressRequestListener);
+        Call call = showUptimeMetricsHistoricValidateBeforeCall(transcoderId, id, fields, from, to, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LimitsResponse>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4484,7 +4487,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call startTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call startTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4511,10 +4514,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4527,7 +4530,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call startTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call startTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -4535,7 +4538,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = startTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = startTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4572,7 +4575,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateState> startTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = startTranscoderValidateBeforeCall(id, null, null);
+        Call call = startTranscoderValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4585,7 +4588,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call startTranscoderAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
+    public Call startTranscoderAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4606,7 +4609,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = startTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = startTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4619,7 +4622,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call stopTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call stopTranscoderCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4646,10 +4649,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4662,7 +4665,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call stopTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call stopTranscoderValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -4670,7 +4673,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = stopTranscoderCall(id, progressListener, progressRequestListener);
+        Call call = stopTranscoderCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4707,7 +4710,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateState> stopTranscoderWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = stopTranscoderValidateBeforeCall(id, null, null);
+        Call call = stopTranscoderValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4720,7 +4723,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call stopTranscoderAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
+    public Call stopTranscoderAsync(String id, final ApiCallback<TranscoderCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4741,7 +4744,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = stopTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = stopTranscoderValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4755,7 +4758,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateTranscoderCall(String id, TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateTranscoderCall(String id, TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = transcoder;
 
         // create path and map variables
@@ -4782,10 +4785,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4798,7 +4801,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateTranscoderValidateBeforeCall(String id, TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateTranscoderValidateBeforeCall(String id, TranscoderCreateInput transcoder, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -4811,7 +4814,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateTranscoderCall(id, transcoder, progressListener, progressRequestListener);
+        Call call = updateTranscoderCall(id, transcoder, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4845,7 +4848,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<TranscoderCreateInput> updateTranscoderWithHttpInfo(String id, TranscoderCreateInput transcoder) throws ApiException {
-        com.squareup.okhttp.Call call = updateTranscoderValidateBeforeCall(id, transcoder, null, null);
+        Call call = updateTranscoderValidateBeforeCall(id, transcoder, null, null);
         Type localVarReturnType = new TypeToken<TranscoderCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4859,7 +4862,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateTranscoderAsync(String id, TranscoderCreateInput transcoder, final ApiCallback<TranscoderCreateInput> callback) throws ApiException {
+    public Call updateTranscoderAsync(String id, TranscoderCreateInput transcoder, final ApiCallback<TranscoderCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4880,7 +4883,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateTranscoderValidateBeforeCall(id, transcoder, progressListener, progressRequestListener);
+        Call call = updateTranscoderValidateBeforeCall(id, transcoder, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TranscoderCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4895,7 +4898,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateTranscoderOutputCall(String transcoderId, String id, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateTranscoderOutputCall(String transcoderId, String id, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = output;
 
         // create path and map variables
@@ -4923,10 +4926,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -4939,7 +4942,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateTranscoderOutputValidateBeforeCall(String transcoderId, String id, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateTranscoderOutputValidateBeforeCall(String transcoderId, String id, OutputCreateInput output, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -4957,7 +4960,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateTranscoderOutputCall(transcoderId, id, output, progressListener, progressRequestListener);
+        Call call = updateTranscoderOutputCall(transcoderId, id, output, progressListener, progressRequestListener);
         return call;
 
     }
@@ -5002,7 +5005,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputCreateInput> updateTranscoderOutputWithHttpInfo(String transcoderId, String id, OutputCreateInput output) throws ApiException {
-        com.squareup.okhttp.Call call = updateTranscoderOutputValidateBeforeCall(transcoderId, id, output, null, null);
+        Call call = updateTranscoderOutputValidateBeforeCall(transcoderId, id, output, null, null);
         Type localVarReturnType = new TypeToken<OutputCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -5017,7 +5020,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateTranscoderOutputAsync(String transcoderId, String id, OutputCreateInput output, final ApiCallback<OutputCreateInput> callback) throws ApiException {
+    public Call updateTranscoderOutputAsync(String transcoderId, String id, OutputCreateInput output, final ApiCallback<OutputCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5038,7 +5041,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateTranscoderOutputValidateBeforeCall(transcoderId, id, output, progressListener, progressRequestListener);
+        Call call = updateTranscoderOutputValidateBeforeCall(transcoderId, id, output, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -5054,7 +5057,7 @@ public class TranscodersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateTranscoderOutputOutputStreamTargetCall(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = outputStreamTarget;
 
         // create path and map variables
@@ -5083,10 +5086,10 @@ public class TranscodersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -5099,7 +5102,7 @@ public class TranscodersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateTranscoderOutputOutputStreamTargetValidateBeforeCall(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'transcoderId' is set
         if (transcoderId == null) {
@@ -5122,7 +5125,7 @@ public class TranscodersApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, outputStreamTarget, progressListener, progressRequestListener);
+        Call call = updateTranscoderOutputOutputStreamTargetCall(transcoderId, outputId, streamTargetId, outputStreamTarget, progressListener, progressRequestListener);
         return call;
 
     }
@@ -5169,7 +5172,7 @@ public class TranscodersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<OutputStreamTargetCreateInput> updateTranscoderOutputOutputStreamTargetWithHttpInfo(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget) throws ApiException {
-        com.squareup.okhttp.Call call = updateTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, outputStreamTarget, null, null);
+        Call call = updateTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, outputStreamTarget, null, null);
         Type localVarReturnType = new TypeToken<OutputStreamTargetCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -5185,7 +5188,7 @@ public class TranscodersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget, final ApiCallback<OutputStreamTargetCreateInput> callback) throws ApiException {
+    public Call updateTranscoderOutputOutputStreamTargetAsync(String transcoderId, String outputId, String streamTargetId, OutputStreamTargetCreateInput outputStreamTarget, final ApiCallback<OutputStreamTargetCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5206,7 +5209,7 @@ public class TranscodersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, outputStreamTarget, progressListener, progressRequestListener);
+        Call call = updateTranscoderOutputOutputStreamTargetValidateBeforeCall(transcoderId, outputId, streamTargetId, outputStreamTarget, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<OutputStreamTargetCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

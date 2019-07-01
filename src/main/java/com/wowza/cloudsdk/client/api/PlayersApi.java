@@ -38,6 +38,9 @@ import com.wowza.cloudsdk.client.model.PlayerUpdateInput;
 import com.wowza.cloudsdk.client.model.Players;
 import com.wowza.cloudsdk.client.model.UrlCreateInput;
 import com.wowza.cloudsdk.client.model.Urls;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -73,7 +76,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createPlayerUrlCall(String playerId, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createPlayerUrlCall(String playerId, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = url;
 
         // create path and map variables
@@ -100,10 +103,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -116,7 +119,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createPlayerUrlValidateBeforeCall(String playerId, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createPlayerUrlValidateBeforeCall(String playerId, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'playerId' is set
         if (playerId == null) {
@@ -129,7 +132,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = createPlayerUrlCall(playerId, url, progressListener, progressRequestListener);
+        Call call = createPlayerUrlCall(playerId, url, progressListener, progressRequestListener);
         return call;
 
     }
@@ -171,7 +174,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UrlCreateInput> createPlayerUrlWithHttpInfo(String playerId, UrlCreateInput url) throws ApiException {
-        com.squareup.okhttp.Call call = createPlayerUrlValidateBeforeCall(playerId, url, null, null);
+        Call call = createPlayerUrlValidateBeforeCall(playerId, url, null, null);
         Type localVarReturnType = new TypeToken<UrlCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -185,7 +188,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createPlayerUrlAsync(String playerId, UrlCreateInput url, final ApiCallback<UrlCreateInput> callback) throws ApiException {
+    public Call createPlayerUrlAsync(String playerId, UrlCreateInput url, final ApiCallback<UrlCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -206,7 +209,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createPlayerUrlValidateBeforeCall(playerId, url, progressListener, progressRequestListener);
+        Call call = createPlayerUrlValidateBeforeCall(playerId, url, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UrlCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -220,7 +223,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deletePlayerUrlCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deletePlayerUrlCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -248,10 +251,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -264,7 +267,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deletePlayerUrlValidateBeforeCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deletePlayerUrlValidateBeforeCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'playerId' is set
         if (playerId == null) {
@@ -277,7 +280,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = deletePlayerUrlCall(playerId, id, progressListener, progressRequestListener);
+        Call call = deletePlayerUrlCall(playerId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -302,7 +305,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deletePlayerUrlWithHttpInfo(String playerId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = deletePlayerUrlValidateBeforeCall(playerId, id, null, null);
+        Call call = deletePlayerUrlValidateBeforeCall(playerId, id, null, null);
         return apiClient.execute(call);
     }
 
@@ -315,7 +318,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deletePlayerUrlAsync(String playerId, String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deletePlayerUrlAsync(String playerId, String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -336,7 +339,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deletePlayerUrlValidateBeforeCall(playerId, id, progressListener, progressRequestListener);
+        Call call = deletePlayerUrlValidateBeforeCall(playerId, id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -348,7 +351,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listPlayerUrlsCall(String playerId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listPlayerUrlsCall(String playerId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -375,10 +378,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -391,7 +394,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listPlayerUrlsValidateBeforeCall(String playerId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listPlayerUrlsValidateBeforeCall(String playerId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'playerId' is set
         if (playerId == null) {
@@ -399,7 +402,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = listPlayerUrlsCall(playerId, progressListener, progressRequestListener);
+        Call call = listPlayerUrlsCall(playerId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -436,7 +439,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Urls> listPlayerUrlsWithHttpInfo(String playerId) throws ApiException {
-        com.squareup.okhttp.Call call = listPlayerUrlsValidateBeforeCall(playerId, null, null);
+        Call call = listPlayerUrlsValidateBeforeCall(playerId, null, null);
         Type localVarReturnType = new TypeToken<Urls>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -449,7 +452,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listPlayerUrlsAsync(String playerId, final ApiCallback<Urls> callback) throws ApiException {
+    public Call listPlayerUrlsAsync(String playerId, final ApiCallback<Urls> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -470,7 +473,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listPlayerUrlsValidateBeforeCall(playerId, progressListener, progressRequestListener);
+        Call call = listPlayerUrlsValidateBeforeCall(playerId, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Urls>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -484,7 +487,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listPlayersCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listPlayersCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -514,10 +517,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -530,10 +533,10 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listPlayersValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listPlayersValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listPlayersCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listPlayersCall(page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -573,7 +576,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Players> listPlayersWithHttpInfo(Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listPlayersValidateBeforeCall(page, perPage, null, null);
+        Call call = listPlayersValidateBeforeCall(page, perPage, null, null);
         Type localVarReturnType = new TypeToken<Players>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -587,7 +590,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listPlayersAsync(Integer page, Integer perPage, final ApiCallback<Players> callback) throws ApiException {
+    public Call listPlayersAsync(Integer page, Integer perPage, final ApiCallback<Players> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -608,7 +611,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listPlayersValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listPlayersValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Players>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -621,7 +624,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call requestPlayerRebuildCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call requestPlayerRebuildCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -648,10 +651,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -664,7 +667,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call requestPlayerRebuildValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call requestPlayerRebuildValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -672,7 +675,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = requestPlayerRebuildCall(id, progressListener, progressRequestListener);
+        Call call = requestPlayerRebuildCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -709,7 +712,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PlayerCreateState> requestPlayerRebuildWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = requestPlayerRebuildValidateBeforeCall(id, null, null);
+        Call call = requestPlayerRebuildValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<PlayerCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -722,7 +725,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call requestPlayerRebuildAsync(String id, final ApiCallback<PlayerCreateState> callback) throws ApiException {
+    public Call requestPlayerRebuildAsync(String id, final ApiCallback<PlayerCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -743,7 +746,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = requestPlayerRebuildValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = requestPlayerRebuildValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PlayerCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -756,7 +759,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showPlayerCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showPlayerCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -783,10 +786,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -799,7 +802,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showPlayerValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showPlayerValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -807,7 +810,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showPlayerCall(id, progressListener, progressRequestListener);
+        Call call = showPlayerCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -844,7 +847,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PlayerCreate> showPlayerWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showPlayerValidateBeforeCall(id, null, null);
+        Call call = showPlayerValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<PlayerCreate>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -857,7 +860,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showPlayerAsync(String id, final ApiCallback<PlayerCreate> callback) throws ApiException {
+    public Call showPlayerAsync(String id, final ApiCallback<PlayerCreate> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -878,7 +881,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showPlayerValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showPlayerValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PlayerCreate>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -891,7 +894,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showPlayerStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showPlayerStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -918,10 +921,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -934,7 +937,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showPlayerStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showPlayerStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -942,7 +945,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showPlayerStateCall(id, progressListener, progressRequestListener);
+        Call call = showPlayerStateCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -979,7 +982,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PlayerCreateState> showPlayerStateWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showPlayerStateValidateBeforeCall(id, null, null);
+        Call call = showPlayerStateValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<PlayerCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -992,7 +995,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showPlayerStateAsync(String id, final ApiCallback<PlayerCreateState> callback) throws ApiException {
+    public Call showPlayerStateAsync(String id, final ApiCallback<PlayerCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1013,7 +1016,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showPlayerStateValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showPlayerStateValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PlayerCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1027,7 +1030,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showPlayerUrlCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showPlayerUrlCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1055,10 +1058,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1071,7 +1074,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showPlayerUrlValidateBeforeCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showPlayerUrlValidateBeforeCall(String playerId, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'playerId' is set
         if (playerId == null) {
@@ -1084,7 +1087,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = showPlayerUrlCall(playerId, id, progressListener, progressRequestListener);
+        Call call = showPlayerUrlCall(playerId, id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1124,7 +1127,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UrlCreateInput> showPlayerUrlWithHttpInfo(String playerId, String id) throws ApiException {
-        com.squareup.okhttp.Call call = showPlayerUrlValidateBeforeCall(playerId, id, null, null);
+        Call call = showPlayerUrlValidateBeforeCall(playerId, id, null, null);
         Type localVarReturnType = new TypeToken<UrlCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1138,7 +1141,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showPlayerUrlAsync(String playerId, String id, final ApiCallback<UrlCreateInput> callback) throws ApiException {
+    public Call showPlayerUrlAsync(String playerId, String id, final ApiCallback<UrlCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1159,7 +1162,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showPlayerUrlValidateBeforeCall(playerId, id, progressListener, progressRequestListener);
+        Call call = showPlayerUrlValidateBeforeCall(playerId, id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UrlCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1173,7 +1176,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updatePlayerCall(String id, PlayerUpdateInput player, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updatePlayerCall(String id, PlayerUpdateInput player, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = player;
 
         // create path and map variables
@@ -1200,10 +1203,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1216,7 +1219,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updatePlayerValidateBeforeCall(String id, PlayerUpdateInput player, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updatePlayerValidateBeforeCall(String id, PlayerUpdateInput player, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1229,7 +1232,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = updatePlayerCall(id, player, progressListener, progressRequestListener);
+        Call call = updatePlayerCall(id, player, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1271,7 +1274,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<PlayerCreate> updatePlayerWithHttpInfo(String id, PlayerUpdateInput player) throws ApiException {
-        com.squareup.okhttp.Call call = updatePlayerValidateBeforeCall(id, player, null, null);
+        Call call = updatePlayerValidateBeforeCall(id, player, null, null);
         Type localVarReturnType = new TypeToken<PlayerCreate>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1285,7 +1288,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updatePlayerAsync(String id, PlayerUpdateInput player, final ApiCallback<PlayerCreate> callback) throws ApiException {
+    public Call updatePlayerAsync(String id, PlayerUpdateInput player, final ApiCallback<PlayerCreate> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1306,7 +1309,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updatePlayerValidateBeforeCall(id, player, progressListener, progressRequestListener);
+        Call call = updatePlayerValidateBeforeCall(id, player, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PlayerCreate>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1321,7 +1324,7 @@ public class PlayersApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updatePlayerUrlCall(String playerId, String id, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updatePlayerUrlCall(String playerId, String id, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = url;
 
         // create path and map variables
@@ -1349,10 +1352,10 @@ public class PlayersApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1365,7 +1368,7 @@ public class PlayersApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updatePlayerUrlValidateBeforeCall(String playerId, String id, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updatePlayerUrlValidateBeforeCall(String playerId, String id, UrlCreateInput url, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'playerId' is set
         if (playerId == null) {
@@ -1383,7 +1386,7 @@ public class PlayersApi {
         }
         
 
-        com.squareup.okhttp.Call call = updatePlayerUrlCall(playerId, id, url, progressListener, progressRequestListener);
+        Call call = updatePlayerUrlCall(playerId, id, url, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1428,7 +1431,7 @@ public class PlayersApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UrlCreateInput> updatePlayerUrlWithHttpInfo(String playerId, String id, UrlCreateInput url) throws ApiException {
-        com.squareup.okhttp.Call call = updatePlayerUrlValidateBeforeCall(playerId, id, url, null, null);
+        Call call = updatePlayerUrlValidateBeforeCall(playerId, id, url, null, null);
         Type localVarReturnType = new TypeToken<UrlCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1443,7 +1446,7 @@ public class PlayersApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updatePlayerUrlAsync(String playerId, String id, UrlCreateInput url, final ApiCallback<UrlCreateInput> callback) throws ApiException {
+    public Call updatePlayerUrlAsync(String playerId, String id, UrlCreateInput url, final ApiCallback<UrlCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1464,7 +1467,7 @@ public class PlayersApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updatePlayerUrlValidateBeforeCall(playerId, id, url, progressListener, progressRequestListener);
+        Call call = updatePlayerUrlValidateBeforeCall(playerId, id, url, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UrlCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

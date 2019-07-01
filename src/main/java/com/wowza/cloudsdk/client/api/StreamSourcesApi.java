@@ -37,6 +37,9 @@ import com.wowza.cloudsdk.client.model.IndexStreamSource;
 import com.wowza.cloudsdk.client.model.StreamSources;
 import com.wowza.cloudsdk.client.model.StreamSourcesAkamai;
 import com.wowza.cloudsdk.client.model.IndexAkamaiStreamSource;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -71,7 +74,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createStreamSourceCall(StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createStreamSourceCall(StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = streamSource;
 
         // create path and map variables
@@ -97,10 +100,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -113,7 +116,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createStreamSourceValidateBeforeCall(StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createStreamSourceValidateBeforeCall(StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'streamSource' is set
         if (streamSource == null) {
@@ -121,7 +124,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = createStreamSourceCall(streamSource, progressListener, progressRequestListener);
+        Call call = createStreamSourceCall(streamSource, progressListener, progressRequestListener);
         return call;
 
     }
@@ -146,7 +149,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamSource> createStreamSourceWithHttpInfo(StreamSourceCreateInput streamSource) throws ApiException {
-        com.squareup.okhttp.Call call = createStreamSourceValidateBeforeCall(streamSource, null, null);
+        Call call = createStreamSourceValidateBeforeCall(streamSource, null, null);
         Type localVarReturnType = new TypeToken<StreamSource>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -159,7 +162,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createStreamSourceAsync(StreamSourceCreateInput streamSource, final ApiCallback<StreamSource> callback) throws ApiException {
+    public Call createStreamSourceAsync(StreamSourceCreateInput streamSource, final ApiCallback<StreamSource> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -180,7 +183,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createStreamSourceValidateBeforeCall(streamSource, progressListener, progressRequestListener);
+        Call call = createStreamSourceValidateBeforeCall(streamSource, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamSource>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -193,7 +196,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createakamaiStreamSourceCall(AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createakamaiStreamSourceCall(AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = streamSourceAkamai;
 
         // create path and map variables
@@ -219,10 +222,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -235,7 +238,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createakamaiStreamSourceValidateBeforeCall(AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createakamaiStreamSourceValidateBeforeCall(AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'streamSourceAkamai' is set
         if (streamSourceAkamai == null) {
@@ -243,7 +246,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = createakamaiStreamSourceCall(streamSourceAkamai, progressListener, progressRequestListener);
+        Call call = createakamaiStreamSourceCall(streamSourceAkamai, progressListener, progressRequestListener);
         return call;
 
     }
@@ -282,7 +285,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<AkamaiStreamSourceCreateInput> createakamaiStreamSourceWithHttpInfo(AkamaiStreamSourceCreateInput streamSourceAkamai) throws ApiException {
-        com.squareup.okhttp.Call call = createakamaiStreamSourceValidateBeforeCall(streamSourceAkamai, null, null);
+        Call call = createakamaiStreamSourceValidateBeforeCall(streamSourceAkamai, null, null);
         Type localVarReturnType = new TypeToken<AkamaiStreamSourceCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -295,7 +298,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createakamaiStreamSourceAsync(AkamaiStreamSourceCreateInput streamSourceAkamai, final ApiCallback<AkamaiStreamSourceCreateInput> callback) throws ApiException {
+    public Call createakamaiStreamSourceAsync(AkamaiStreamSourceCreateInput streamSourceAkamai, final ApiCallback<AkamaiStreamSourceCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -316,7 +319,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createakamaiStreamSourceValidateBeforeCall(streamSourceAkamai, progressListener, progressRequestListener);
+        Call call = createakamaiStreamSourceValidateBeforeCall(streamSourceAkamai, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AkamaiStreamSourceCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -329,7 +332,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -356,10 +359,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -372,7 +375,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -380,7 +383,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteStreamSourceCall(id, progressListener, progressRequestListener);
+        Call call = deleteStreamSourceCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -403,7 +406,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteStreamSourceWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteStreamSourceValidateBeforeCall(id, null, null);
+        Call call = deleteStreamSourceValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -415,7 +418,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteStreamSourceAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteStreamSourceAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -436,7 +439,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = deleteStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -448,7 +451,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteakamaiStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteakamaiStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -475,10 +478,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -491,7 +494,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteakamaiStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteakamaiStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -499,7 +502,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteakamaiStreamSourceCall(id, progressListener, progressRequestListener);
+        Call call = deleteakamaiStreamSourceCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -522,7 +525,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteakamaiStreamSourceWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteakamaiStreamSourceValidateBeforeCall(id, null, null);
+        Call call = deleteakamaiStreamSourceValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -534,7 +537,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteakamaiStreamSourceAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteakamaiStreamSourceAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -555,7 +558,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteakamaiStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = deleteakamaiStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -568,7 +571,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listAkamaiStreamSourcesCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listAkamaiStreamSourcesCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -598,10 +601,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -614,10 +617,10 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listAkamaiStreamSourcesValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listAkamaiStreamSourcesValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listAkamaiStreamSourcesCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listAkamaiStreamSourcesCall(page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -657,7 +660,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamSourcesAkamai> listAkamaiStreamSourcesWithHttpInfo(Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listAkamaiStreamSourcesValidateBeforeCall(page, perPage, null, null);
+        Call call = listAkamaiStreamSourcesValidateBeforeCall(page, perPage, null, null);
         Type localVarReturnType = new TypeToken<StreamSourcesAkamai>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -671,7 +674,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listAkamaiStreamSourcesAsync(Integer page, Integer perPage, final ApiCallback<StreamSourcesAkamai> callback) throws ApiException {
+    public Call listAkamaiStreamSourcesAsync(Integer page, Integer perPage, final ApiCallback<StreamSourcesAkamai> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -692,7 +695,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listAkamaiStreamSourcesValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listAkamaiStreamSourcesValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamSourcesAkamai>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -706,7 +709,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listStreamSourcesCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listStreamSourcesCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -736,10 +739,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -752,10 +755,10 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listStreamSourcesValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listStreamSourcesValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listStreamSourcesCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listStreamSourcesCall(page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -795,7 +798,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamSources> listStreamSourcesWithHttpInfo(Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listStreamSourcesValidateBeforeCall(page, perPage, null, null);
+        Call call = listStreamSourcesValidateBeforeCall(page, perPage, null, null);
         Type localVarReturnType = new TypeToken<StreamSources>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -809,7 +812,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listStreamSourcesAsync(Integer page, Integer perPage, final ApiCallback<StreamSources> callback) throws ApiException {
+    public Call listStreamSourcesAsync(Integer page, Integer perPage, final ApiCallback<StreamSources> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -830,7 +833,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listStreamSourcesValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listStreamSourcesValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamSources>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -843,7 +846,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showAkamaiStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showAkamaiStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -870,10 +873,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -886,7 +889,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showAkamaiStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showAkamaiStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -894,7 +897,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = showAkamaiStreamSourceCall(id, progressListener, progressRequestListener);
+        Call call = showAkamaiStreamSourceCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -931,7 +934,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<AkamaiStreamSourceCreateInput> showAkamaiStreamSourceWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showAkamaiStreamSourceValidateBeforeCall(id, null, null);
+        Call call = showAkamaiStreamSourceValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<AkamaiStreamSourceCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -944,7 +947,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showAkamaiStreamSourceAsync(String id, final ApiCallback<AkamaiStreamSourceCreateInput> callback) throws ApiException {
+    public Call showAkamaiStreamSourceAsync(String id, final ApiCallback<AkamaiStreamSourceCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -965,7 +968,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showAkamaiStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showAkamaiStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AkamaiStreamSourceCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -978,7 +981,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showStreamSourceCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1005,10 +1008,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1021,7 +1024,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showStreamSourceValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1029,7 +1032,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = showStreamSourceCall(id, progressListener, progressRequestListener);
+        Call call = showStreamSourceCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1054,7 +1057,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamSource> showStreamSourceWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showStreamSourceValidateBeforeCall(id, null, null);
+        Call call = showStreamSourceValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<StreamSource>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1067,7 +1070,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showStreamSourceAsync(String id, final ApiCallback<StreamSource> callback) throws ApiException {
+    public Call showStreamSourceAsync(String id, final ApiCallback<StreamSource> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1088,7 +1091,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showStreamSourceValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamSource>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1102,7 +1105,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateAkamaiStreamSourceCall(String id, AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateAkamaiStreamSourceCall(String id, AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = streamSourceAkamai;
 
         // create path and map variables
@@ -1129,10 +1132,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1145,7 +1148,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateAkamaiStreamSourceValidateBeforeCall(String id, AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateAkamaiStreamSourceValidateBeforeCall(String id, AkamaiStreamSourceCreateInput streamSourceAkamai, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1158,7 +1161,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateAkamaiStreamSourceCall(id, streamSourceAkamai, progressListener, progressRequestListener);
+        Call call = updateAkamaiStreamSourceCall(id, streamSourceAkamai, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1200,7 +1203,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<AkamaiStreamSourceCreateInput> updateAkamaiStreamSourceWithHttpInfo(String id, AkamaiStreamSourceCreateInput streamSourceAkamai) throws ApiException {
-        com.squareup.okhttp.Call call = updateAkamaiStreamSourceValidateBeforeCall(id, streamSourceAkamai, null, null);
+        Call call = updateAkamaiStreamSourceValidateBeforeCall(id, streamSourceAkamai, null, null);
         Type localVarReturnType = new TypeToken<AkamaiStreamSourceCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1214,7 +1217,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateAkamaiStreamSourceAsync(String id, AkamaiStreamSourceCreateInput streamSourceAkamai, final ApiCallback<AkamaiStreamSourceCreateInput> callback) throws ApiException {
+    public Call updateAkamaiStreamSourceAsync(String id, AkamaiStreamSourceCreateInput streamSourceAkamai, final ApiCallback<AkamaiStreamSourceCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1235,7 +1238,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateAkamaiStreamSourceValidateBeforeCall(id, streamSourceAkamai, progressListener, progressRequestListener);
+        Call call = updateAkamaiStreamSourceValidateBeforeCall(id, streamSourceAkamai, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<AkamaiStreamSourceCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1249,7 +1252,7 @@ public class StreamSourcesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateStreamSourceCall(String id, StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateStreamSourceCall(String id, StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = streamSource;
 
         // create path and map variables
@@ -1276,10 +1279,10 @@ public class StreamSourcesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1292,7 +1295,7 @@ public class StreamSourcesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateStreamSourceValidateBeforeCall(String id, StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateStreamSourceValidateBeforeCall(String id, StreamSourceCreateInput streamSource, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1305,7 +1308,7 @@ public class StreamSourcesApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateStreamSourceCall(id, streamSource, progressListener, progressRequestListener);
+        Call call = updateStreamSourceCall(id, streamSource, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1332,7 +1335,7 @@ public class StreamSourcesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<StreamSource> updateStreamSourceWithHttpInfo(String id, StreamSourceCreateInput streamSource) throws ApiException {
-        com.squareup.okhttp.Call call = updateStreamSourceValidateBeforeCall(id, streamSource, null, null);
+        Call call = updateStreamSourceValidateBeforeCall(id, streamSource, null, null);
         Type localVarReturnType = new TypeToken<StreamSource>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1346,7 +1349,7 @@ public class StreamSourcesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateStreamSourceAsync(String id, StreamSourceCreateInput streamSource, final ApiCallback<StreamSource> callback) throws ApiException {
+    public Call updateStreamSourceAsync(String id, StreamSourceCreateInput streamSource, final ApiCallback<StreamSource> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1367,7 +1370,7 @@ public class StreamSourcesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateStreamSourceValidateBeforeCall(id, streamSource, progressListener, progressRequestListener);
+        Call call = updateStreamSourceValidateBeforeCall(id, streamSource, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<StreamSource>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

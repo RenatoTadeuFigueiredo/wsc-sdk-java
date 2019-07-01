@@ -34,6 +34,9 @@ import com.wowza.cloudsdk.client.model.UsageNetworkStreamSources;
 import com.wowza.cloudsdk.client.model.UsageNetworkStreamTargets;
 import com.wowza.cloudsdk.client.model.UsageNetworkTranscoders;
 import com.wowza.cloudsdk.client.model.UsageNetworkTranscoder;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -69,7 +72,7 @@ public class NetworkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call usageNetworkStreamSourcesIndexCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call usageNetworkStreamSourcesIndexCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -99,10 +102,10 @@ public class NetworkApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -115,10 +118,10 @@ public class NetworkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call usageNetworkStreamSourcesIndexValidateBeforeCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call usageNetworkStreamSourcesIndexValidateBeforeCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = usageNetworkStreamSourcesIndexCall(from, to, progressListener, progressRequestListener);
+        Call call = usageNetworkStreamSourcesIndexCall(from, to, progressListener, progressRequestListener);
         return call;
 
     }
@@ -158,7 +161,7 @@ public class NetworkApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UsageNetworkStreamSources> usageNetworkStreamSourcesIndexWithHttpInfo(OffsetDateTime from, OffsetDateTime to) throws ApiException {
-        com.squareup.okhttp.Call call = usageNetworkStreamSourcesIndexValidateBeforeCall(from, to, null, null);
+        Call call = usageNetworkStreamSourcesIndexValidateBeforeCall(from, to, null, null);
         Type localVarReturnType = new TypeToken<UsageNetworkStreamSources>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -172,7 +175,7 @@ public class NetworkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call usageNetworkStreamSourcesIndexAsync(OffsetDateTime from, OffsetDateTime to, final ApiCallback<UsageNetworkStreamSources> callback) throws ApiException {
+    public Call usageNetworkStreamSourcesIndexAsync(OffsetDateTime from, OffsetDateTime to, final ApiCallback<UsageNetworkStreamSources> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -193,7 +196,7 @@ public class NetworkApi {
             };
         }
 
-        com.squareup.okhttp.Call call = usageNetworkStreamSourcesIndexValidateBeforeCall(from, to, progressListener, progressRequestListener);
+        Call call = usageNetworkStreamSourcesIndexValidateBeforeCall(from, to, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UsageNetworkStreamSources>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -207,7 +210,7 @@ public class NetworkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call usageNetworkStreamTargetsIndexCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call usageNetworkStreamTargetsIndexCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -237,10 +240,10 @@ public class NetworkApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -253,10 +256,10 @@ public class NetworkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call usageNetworkStreamTargetsIndexValidateBeforeCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call usageNetworkStreamTargetsIndexValidateBeforeCall(OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = usageNetworkStreamTargetsIndexCall(from, to, progressListener, progressRequestListener);
+        Call call = usageNetworkStreamTargetsIndexCall(from, to, progressListener, progressRequestListener);
         return call;
 
     }
@@ -283,7 +286,7 @@ public class NetworkApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UsageNetworkStreamTargets> usageNetworkStreamTargetsIndexWithHttpInfo(OffsetDateTime from, OffsetDateTime to) throws ApiException {
-        com.squareup.okhttp.Call call = usageNetworkStreamTargetsIndexValidateBeforeCall(from, to, null, null);
+        Call call = usageNetworkStreamTargetsIndexValidateBeforeCall(from, to, null, null);
         Type localVarReturnType = new TypeToken<UsageNetworkStreamTargets>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -297,7 +300,7 @@ public class NetworkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call usageNetworkStreamTargetsIndexAsync(OffsetDateTime from, OffsetDateTime to, final ApiCallback<UsageNetworkStreamTargets> callback) throws ApiException {
+    public Call usageNetworkStreamTargetsIndexAsync(OffsetDateTime from, OffsetDateTime to, final ApiCallback<UsageNetworkStreamTargets> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -318,7 +321,7 @@ public class NetworkApi {
             };
         }
 
-        com.squareup.okhttp.Call call = usageNetworkStreamTargetsIndexValidateBeforeCall(from, to, progressListener, progressRequestListener);
+        Call call = usageNetworkStreamTargetsIndexValidateBeforeCall(from, to, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UsageNetworkStreamTargets>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -334,7 +337,7 @@ public class NetworkApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call usageNetworkTranscodersIndexCall(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call usageNetworkTranscodersIndexCall(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -368,10 +371,10 @@ public class NetworkApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -384,10 +387,10 @@ public class NetworkApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call usageNetworkTranscodersIndexValidateBeforeCall(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call usageNetworkTranscodersIndexValidateBeforeCall(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = usageNetworkTranscodersIndexCall(from, to, transcoderType, billingMode, progressListener, progressRequestListener);
+        Call call = usageNetworkTranscodersIndexCall(from, to, transcoderType, billingMode, progressListener, progressRequestListener);
         return call;
 
     }
@@ -433,7 +436,7 @@ public class NetworkApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UsageNetworkTranscoders> usageNetworkTranscodersIndexWithHttpInfo(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode) throws ApiException {
-        com.squareup.okhttp.Call call = usageNetworkTranscodersIndexValidateBeforeCall(from, to, transcoderType, billingMode, null, null);
+        Call call = usageNetworkTranscodersIndexValidateBeforeCall(from, to, transcoderType, billingMode, null, null);
         Type localVarReturnType = new TypeToken<UsageNetworkTranscoders>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -449,7 +452,7 @@ public class NetworkApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call usageNetworkTranscodersIndexAsync(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode, final ApiCallback<UsageNetworkTranscoders> callback) throws ApiException {
+    public Call usageNetworkTranscodersIndexAsync(OffsetDateTime from, OffsetDateTime to, String transcoderType, String billingMode, final ApiCallback<UsageNetworkTranscoders> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -470,7 +473,7 @@ public class NetworkApi {
             };
         }
 
-        com.squareup.okhttp.Call call = usageNetworkTranscodersIndexValidateBeforeCall(from, to, transcoderType, billingMode, progressListener, progressRequestListener);
+        Call call = usageNetworkTranscodersIndexValidateBeforeCall(from, to, transcoderType, billingMode, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UsageNetworkTranscoders>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

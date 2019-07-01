@@ -33,6 +33,9 @@ import com.wowza.cloudsdk.client.model.ScheduleCreateInput;
 import com.wowza.cloudsdk.client.model.ScheduleCreateState;
 import com.wowza.cloudsdk.client.model.ScheduleState;
 import com.wowza.cloudsdk.client.model.Schedules;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -67,7 +70,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createScheduleCall(ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createScheduleCall(ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = schedule;
 
         // create path and map variables
@@ -93,10 +96,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -109,7 +112,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createScheduleValidateBeforeCall(ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createScheduleValidateBeforeCall(ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'schedule' is set
         if (schedule == null) {
@@ -117,7 +120,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = createScheduleCall(schedule, progressListener, progressRequestListener);
+        Call call = createScheduleCall(schedule, progressListener, progressRequestListener);
         return call;
 
     }
@@ -156,7 +159,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ScheduleCreateInput> createScheduleWithHttpInfo(ScheduleCreateInput schedule) throws ApiException {
-        com.squareup.okhttp.Call call = createScheduleValidateBeforeCall(schedule, null, null);
+        Call call = createScheduleValidateBeforeCall(schedule, null, null);
         Type localVarReturnType = new TypeToken<ScheduleCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -169,7 +172,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createScheduleAsync(ScheduleCreateInput schedule, final ApiCallback<ScheduleCreateInput> callback) throws ApiException {
+    public Call createScheduleAsync(ScheduleCreateInput schedule, final ApiCallback<ScheduleCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -190,7 +193,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createScheduleValidateBeforeCall(schedule, progressListener, progressRequestListener);
+        Call call = createScheduleValidateBeforeCall(schedule, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Schedule>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -203,7 +206,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -230,10 +233,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -246,7 +249,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -254,7 +257,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteScheduleCall(id, progressListener, progressRequestListener);
+        Call call = deleteScheduleCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -277,7 +280,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteScheduleWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteScheduleValidateBeforeCall(id, null, null);
+        Call call = deleteScheduleValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -289,7 +292,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteScheduleAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteScheduleAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -310,7 +313,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = deleteScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -322,7 +325,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call disableScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call disableScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -349,10 +352,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -365,7 +368,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call disableScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call disableScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -373,7 +376,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = disableScheduleCall(id, progressListener, progressRequestListener);
+        Call call = disableScheduleCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -410,7 +413,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ScheduleCreateState> disableScheduleWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = disableScheduleValidateBeforeCall(id, null, null);
+        Call call = disableScheduleValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<ScheduleCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -423,7 +426,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call disableScheduleAsync(String id, final ApiCallback<ScheduleCreateState> callback) throws ApiException {
+    public Call disableScheduleAsync(String id, final ApiCallback<ScheduleCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -444,7 +447,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = disableScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = disableScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ScheduleCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -457,7 +460,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call enableScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call enableScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -484,10 +487,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -500,7 +503,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call enableScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call enableScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -508,7 +511,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = enableScheduleCall(id, progressListener, progressRequestListener);
+        Call call = enableScheduleCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -546,7 +549,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ScheduleCreateState> enableScheduleWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = enableScheduleValidateBeforeCall(id, null, null);
+        Call call = enableScheduleValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<ScheduleCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -559,7 +562,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call enableScheduleAsync(String id, final ApiCallback<ScheduleCreateState> callback) throws ApiException {
+    public Call enableScheduleAsync(String id, final ApiCallback<ScheduleCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -580,7 +583,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = enableScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = enableScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ScheduleCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -594,7 +597,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listSchedulesCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listSchedulesCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -624,10 +627,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -640,10 +643,10 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listSchedulesValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listSchedulesValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listSchedulesCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listSchedulesCall(page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -683,7 +686,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Schedules> listSchedulesWithHttpInfo(Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listSchedulesValidateBeforeCall(page, perPage, null, null);
+        Call call = listSchedulesValidateBeforeCall(page, perPage, null, null);
         Type localVarReturnType = new TypeToken<Schedules>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -697,7 +700,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listSchedulesAsync(Integer page, Integer perPage, final ApiCallback<Schedules> callback) throws ApiException {
+    public Call listSchedulesAsync(Integer page, Integer perPage, final ApiCallback<Schedules> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -718,7 +721,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listSchedulesValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listSchedulesValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Schedules>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -731,7 +734,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showScheduleCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -758,10 +761,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -774,7 +777,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showScheduleValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -782,7 +785,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = showScheduleCall(id, progressListener, progressRequestListener);
+        Call call = showScheduleCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -819,7 +822,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ScheduleCreateInput> showScheduleWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showScheduleValidateBeforeCall(id, null, null);
+        Call call = showScheduleValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<ScheduleCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -832,7 +835,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showScheduleAsync(String id, final ApiCallback<ScheduleCreateInput> callback) throws ApiException {
+    public Call showScheduleAsync(String id, final ApiCallback<ScheduleCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -853,7 +856,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showScheduleValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ScheduleCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -866,7 +869,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showScheduleStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showScheduleStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -893,10 +896,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -909,7 +912,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showScheduleStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showScheduleStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -917,7 +920,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = showScheduleStateCall(id, progressListener, progressRequestListener);
+        Call call = showScheduleStateCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -955,7 +958,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ScheduleCreateState> showScheduleStateWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showScheduleStateValidateBeforeCall(id, null, null);
+        Call call = showScheduleStateValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<ScheduleCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -968,7 +971,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showScheduleStateAsync(String id, final ApiCallback<ScheduleCreateState> callback) throws ApiException {
+    public Call showScheduleStateAsync(String id, final ApiCallback<ScheduleCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -989,7 +992,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showScheduleStateValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showScheduleStateValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ScheduleCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1003,7 +1006,7 @@ public class SchedulesApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateScheduleCall(String id, ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateScheduleCall(String id, ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = schedule;
 
         // create path and map variables
@@ -1030,10 +1033,10 @@ public class SchedulesApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1046,7 +1049,7 @@ public class SchedulesApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateScheduleValidateBeforeCall(String id, ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateScheduleValidateBeforeCall(String id, ScheduleCreateInput schedule, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1059,7 +1062,7 @@ public class SchedulesApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateScheduleCall(id, schedule, progressListener, progressRequestListener);
+        Call call = updateScheduleCall(id, schedule, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1101,7 +1104,7 @@ public class SchedulesApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<ScheduleCreateInput> updateScheduleWithHttpInfo(String id, ScheduleCreateInput schedule) throws ApiException {
-        com.squareup.okhttp.Call call = updateScheduleValidateBeforeCall(id, schedule, null, null);
+        Call call = updateScheduleValidateBeforeCall(id, schedule, null, null);
         Type localVarReturnType = new TypeToken<ScheduleCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1115,7 +1118,7 @@ public class SchedulesApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateScheduleAsync(String id, ScheduleCreateInput schedule, final ApiCallback<ScheduleCreateInput> callback) throws ApiException {
+    public Call updateScheduleAsync(String id, ScheduleCreateInput schedule, final ApiCallback<ScheduleCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1136,7 +1139,7 @@ public class SchedulesApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateScheduleValidateBeforeCall(id, schedule, progressListener, progressRequestListener);
+        Call call = updateScheduleValidateBeforeCall(id, schedule, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<ScheduleCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

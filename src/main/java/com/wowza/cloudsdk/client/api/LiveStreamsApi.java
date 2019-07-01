@@ -42,6 +42,9 @@ import com.wowza.cloudsdk.client.model.LiveStreamThumbnail;
 import com.wowza.cloudsdk.client.model.ShmMetrics;
 import com.wowza.cloudsdk.client.model.LiveStreams;
 import com.wowza.cloudsdk.client.model.LiveStreamCreateInput;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -76,7 +79,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call createLiveStreamCall(LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call createLiveStreamCall(LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = liveStream;
 
         // create path and map variables
@@ -102,10 +105,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -118,7 +121,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call createLiveStreamValidateBeforeCall(LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call createLiveStreamValidateBeforeCall(LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'liveStream' is set
         if (liveStream == null) {
@@ -126,7 +129,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = createLiveStreamCall(liveStream, progressListener, progressRequestListener);
+        Call call = createLiveStreamCall(liveStream, progressListener, progressRequestListener);
         return call;
 
     }
@@ -165,7 +168,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateInput> createLiveStreamWithHttpInfo(LiveStreamCreateInput liveStream) throws ApiException {
-        com.squareup.okhttp.Call call = createLiveStreamValidateBeforeCall(liveStream, null, null);
+        Call call = createLiveStreamValidateBeforeCall(liveStream, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -178,7 +181,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call createLiveStreamAsync(LiveStreamCreateInput liveStream, final ApiCallback<LiveStream> callback) throws ApiException {
+    public Call createLiveStreamAsync(LiveStreamCreateInput liveStream, final ApiCallback<LiveStream> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -199,7 +202,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = createLiveStreamValidateBeforeCall(liveStream, progressListener, progressRequestListener);
+        Call call = createLiveStreamValidateBeforeCall(liveStream, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -212,7 +215,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -239,10 +242,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -255,7 +258,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -263,7 +266,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteLiveStreamCall(id, progressListener, progressRequestListener);
+        Call call = deleteLiveStreamCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -286,7 +289,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteLiveStreamWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteLiveStreamValidateBeforeCall(id, null, null);
+        Call call = deleteLiveStreamValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -298,7 +301,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteLiveStreamAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteLiveStreamAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -319,7 +322,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = deleteLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -332,7 +335,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listLiveStreamsCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listLiveStreamsCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -362,10 +365,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -378,10 +381,10 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listLiveStreamsValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listLiveStreamsValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listLiveStreamsCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listLiveStreamsCall(page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -408,7 +411,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreams> listLiveStreamsWithHttpInfo(Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listLiveStreamsValidateBeforeCall(page, perPage, null, null);
+        Call call = listLiveStreamsValidateBeforeCall(page, perPage, null, null);
         Type localVarReturnType = new TypeToken<LiveStreams>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -422,7 +425,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listLiveStreamsAsync(Integer page, Integer perPage, final ApiCallback<LiveStreams> callback) throws ApiException {
+    public Call listLiveStreamsAsync(Integer page, Integer perPage, final ApiCallback<LiveStreams> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -443,7 +446,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listLiveStreamsValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listLiveStreamsValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreams>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -456,7 +459,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call regenerateConnectionCodeLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call regenerateConnectionCodeLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -483,10 +486,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -499,7 +502,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call regenerateConnectionCodeLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call regenerateConnectionCodeLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -507,7 +510,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = regenerateConnectionCodeLiveStreamCall(id, progressListener, progressRequestListener);
+        Call call = regenerateConnectionCodeLiveStreamCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -544,7 +547,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateConnectioncode> regenerateConnectionCodeLiveStreamWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = regenerateConnectionCodeLiveStreamValidateBeforeCall(id, null, null);
+        Call call = regenerateConnectionCodeLiveStreamValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateConnectioncode>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -557,7 +560,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call regenerateConnectionCodeLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateConnectioncode> callback) throws ApiException {
+    public Call regenerateConnectionCodeLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateConnectioncode> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -578,7 +581,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = regenerateConnectionCodeLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = regenerateConnectionCodeLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateConnectioncode>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -591,7 +594,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call resetLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call resetLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -618,10 +621,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -634,7 +637,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call resetLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call resetLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -642,7 +645,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = resetLiveStreamCall(id, progressListener, progressRequestListener);
+        Call call = resetLiveStreamCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -679,7 +682,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateActionState> resetLiveStreamWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = resetLiveStreamValidateBeforeCall(id, null, null);
+        Call call = resetLiveStreamValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateActionState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -692,7 +695,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call resetLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateActionState> callback) throws ApiException {
+    public Call resetLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateActionState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -713,7 +716,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = resetLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = resetLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateActionState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -726,7 +729,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -753,10 +756,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -769,7 +772,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -777,7 +780,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = showLiveStreamCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -815,7 +818,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateInput> showLiveStreamWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showLiveStreamValidateBeforeCall(id, null, null);
+        Call call = showLiveStreamValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -828,7 +831,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamAsync(String id, final ApiCallback<LiveStream> callback) throws ApiException {
+    public Call showLiveStreamAsync(String id, final ApiCallback<LiveStream> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -849,7 +852,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -862,7 +865,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showLiveStreamStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -889,10 +892,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -905,7 +908,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showLiveStreamStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showLiveStreamStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -913,7 +916,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = showLiveStreamStateCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamStateCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -950,7 +953,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateState> showLiveStreamStateWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showLiveStreamStateValidateBeforeCall(id, null, null);
+        Call call = showLiveStreamStateValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -963,7 +966,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamStateAsync(String id, final ApiCallback<LiveStreamCreateState> callback) throws ApiException {
+    public Call showLiveStreamStateAsync(String id, final ApiCallback<LiveStreamCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -984,7 +987,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showLiveStreamStateValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamStateValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -997,7 +1000,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamStatsCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showLiveStreamStatsCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1024,10 +1027,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1040,7 +1043,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showLiveStreamStatsValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showLiveStreamStatsValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1048,7 +1051,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = showLiveStreamStatsCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamStatsCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1085,7 +1088,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateMetrics> showLiveStreamStatsWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showLiveStreamStatsValidateBeforeCall(id, null, null);
+        Call call = showLiveStreamStatsValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateMetrics>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1098,7 +1101,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamStatsAsync(String id, final ApiCallback<LiveStreamCreateMetrics> callback) throws ApiException {
+    public Call showLiveStreamStatsAsync(String id, final ApiCallback<LiveStreamCreateMetrics> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1119,7 +1122,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showLiveStreamStatsValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamStatsValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateMetrics>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1132,7 +1135,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamThumbnailUrlCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showLiveStreamThumbnailUrlCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1159,10 +1162,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1175,7 +1178,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showLiveStreamThumbnailUrlValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showLiveStreamThumbnailUrlValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1183,7 +1186,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = showLiveStreamThumbnailUrlCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamThumbnailUrlCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1220,7 +1223,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateThumbnail> showLiveStreamThumbnailUrlWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showLiveStreamThumbnailUrlValidateBeforeCall(id, null, null);
+        Call call = showLiveStreamThumbnailUrlValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateThumbnail>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1233,7 +1236,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showLiveStreamThumbnailUrlAsync(String id, final ApiCallback<LiveStreamCreateThumbnail> callback) throws ApiException {
+    public Call showLiveStreamThumbnailUrlAsync(String id, final ApiCallback<LiveStreamCreateThumbnail> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1254,7 +1257,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showLiveStreamThumbnailUrlValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showLiveStreamThumbnailUrlValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateThumbnail>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1267,7 +1270,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call startLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call startLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1294,10 +1297,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1310,7 +1313,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call startLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call startLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1318,7 +1321,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = startLiveStreamCall(id, progressListener, progressRequestListener);
+        Call call = startLiveStreamCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1355,7 +1358,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateActionState> startLiveStreamWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = startLiveStreamValidateBeforeCall(id, null, null);
+        Call call = startLiveStreamValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateActionState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1368,7 +1371,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call startLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateActionState> callback) throws ApiException {
+    public Call startLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateActionState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1389,7 +1392,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = startLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = startLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateActionState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1402,7 +1405,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call stopLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call stopLiveStreamCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1429,10 +1432,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1445,7 +1448,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call stopLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call stopLiveStreamValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1453,7 +1456,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = stopLiveStreamCall(id, progressListener, progressRequestListener);
+        Call call = stopLiveStreamCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1490,7 +1493,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateActionState> stopLiveStreamWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = stopLiveStreamValidateBeforeCall(id, null, null);
+        Call call = stopLiveStreamValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateActionState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1503,7 +1506,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call stopLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateActionState> callback) throws ApiException {
+    public Call stopLiveStreamAsync(String id, final ApiCallback<LiveStreamCreateActionState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1524,7 +1527,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = stopLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = stopLiveStreamValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateActionState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -1538,7 +1541,7 @@ public class LiveStreamsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call updateLiveStreamCall(String id, LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call updateLiveStreamCall(String id, LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = liveStream;
 
         // create path and map variables
@@ -1565,10 +1568,10 @@ public class LiveStreamsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -1581,7 +1584,7 @@ public class LiveStreamsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call updateLiveStreamValidateBeforeCall(String id, LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call updateLiveStreamValidateBeforeCall(String id, LiveStreamCreateInput liveStream, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1594,7 +1597,7 @@ public class LiveStreamsApi {
         }
         
 
-        com.squareup.okhttp.Call call = updateLiveStreamCall(id, liveStream, progressListener, progressRequestListener);
+        Call call = updateLiveStreamCall(id, liveStream, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1636,7 +1639,7 @@ public class LiveStreamsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<LiveStreamCreateInput> updateLiveStreamWithHttpInfo(String id, LiveStreamCreateInput liveStream) throws ApiException {
-        com.squareup.okhttp.Call call = updateLiveStreamValidateBeforeCall(id, liveStream, null, null);
+        Call call = updateLiveStreamValidateBeforeCall(id, liveStream, null, null);
         Type localVarReturnType = new TypeToken<LiveStreamCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1650,7 +1653,7 @@ public class LiveStreamsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call updateLiveStreamAsync(String id, LiveStreamCreateInput liveStream, final ApiCallback<LiveStreamCreateInput> callback) throws ApiException {
+    public Call updateLiveStreamAsync(String id, LiveStreamCreateInput liveStream, final ApiCallback<LiveStreamCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1671,7 +1674,7 @@ public class LiveStreamsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = updateLiveStreamValidateBeforeCall(id, liveStream, progressListener, progressRequestListener);
+        Call call = updateLiveStreamValidateBeforeCall(id, liveStream, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<LiveStreamCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

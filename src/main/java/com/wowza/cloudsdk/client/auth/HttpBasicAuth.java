@@ -16,8 +16,8 @@
 package com.wowza.cloudsdk.client.auth;
 
 import com.wowza.cloudsdk.client.Pair;
+import okhttp3.Credentials;
 
-import com.squareup.okhttp.Credentials;
 
 import java.util.Map;
 import java.util.List;

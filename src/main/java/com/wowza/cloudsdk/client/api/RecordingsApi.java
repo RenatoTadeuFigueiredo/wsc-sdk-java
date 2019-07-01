@@ -34,6 +34,9 @@ import com.wowza.cloudsdk.client.model.RecordingCreateState;
 import com.wowza.cloudsdk.client.model.RecordingCreateInput;
 import com.wowza.cloudsdk.client.model.RecordingState;
 import com.wowza.cloudsdk.client.model.IndexRecordings;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -68,7 +71,7 @@ public class RecordingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteRecordingCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call deleteRecordingCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -95,10 +98,10 @@ public class RecordingsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -111,7 +114,7 @@ public class RecordingsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteRecordingValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call deleteRecordingValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -119,7 +122,7 @@ public class RecordingsApi {
         }
         
 
-        com.squareup.okhttp.Call call = deleteRecordingCall(id, progressListener, progressRequestListener);
+        Call call = deleteRecordingCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -142,7 +145,7 @@ public class RecordingsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Void> deleteRecordingWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = deleteRecordingValidateBeforeCall(id, null, null);
+        Call call = deleteRecordingValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
 
@@ -154,7 +157,7 @@ public class RecordingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteRecordingAsync(String id, final ApiCallback<Void> callback) throws ApiException {
+    public Call deleteRecordingAsync(String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -175,7 +178,7 @@ public class RecordingsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteRecordingValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = deleteRecordingValidateBeforeCall(id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -188,7 +191,7 @@ public class RecordingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listRecordingsCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call listRecordingsCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -218,10 +221,10 @@ public class RecordingsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -234,10 +237,10 @@ public class RecordingsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listRecordingsValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call listRecordingsValidateBeforeCall(Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = listRecordingsCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listRecordingsCall(page, perPage, progressListener, progressRequestListener);
         return call;
 
     }
@@ -277,7 +280,7 @@ public class RecordingsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<Recordings> listRecordingsWithHttpInfo(Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = listRecordingsValidateBeforeCall(page, perPage, null, null);
+        Call call = listRecordingsValidateBeforeCall(page, perPage, null, null);
         Type localVarReturnType = new TypeToken<Recordings>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -291,7 +294,7 @@ public class RecordingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listRecordingsAsync(Integer page, Integer perPage, final ApiCallback<Recordings> callback) throws ApiException {
+    public Call listRecordingsAsync(Integer page, Integer perPage, final ApiCallback<Recordings> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -312,7 +315,7 @@ public class RecordingsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listRecordingsValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
+        Call call = listRecordingsValidateBeforeCall(page, perPage, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Recordings>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -325,7 +328,7 @@ public class RecordingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showRecordingCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showRecordingCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -352,10 +355,10 @@ public class RecordingsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -368,7 +371,7 @@ public class RecordingsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showRecordingValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showRecordingValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -376,7 +379,7 @@ public class RecordingsApi {
         }
         
 
-        com.squareup.okhttp.Call call = showRecordingCall(id, progressListener, progressRequestListener);
+        Call call = showRecordingCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -414,7 +417,7 @@ public class RecordingsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<RecordingCreateInput> showRecordingWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showRecordingValidateBeforeCall(id, null, null);
+        Call call = showRecordingValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<RecordingCreateInput>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -427,7 +430,7 @@ public class RecordingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showRecordingAsync(String id, final ApiCallback<RecordingCreateInput> callback) throws ApiException {
+    public Call showRecordingAsync(String id, final ApiCallback<RecordingCreateInput> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -448,7 +451,7 @@ public class RecordingsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showRecordingValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showRecordingValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<RecordingCreateInput>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -461,7 +464,7 @@ public class RecordingsApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showRecordingStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showRecordingStateCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -488,10 +491,10 @@ public class RecordingsApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -504,7 +507,7 @@ public class RecordingsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showRecordingStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showRecordingStateValidateBeforeCall(String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -512,7 +515,7 @@ public class RecordingsApi {
         }
         
 
-        com.squareup.okhttp.Call call = showRecordingStateCall(id, progressListener, progressRequestListener);
+        Call call = showRecordingStateCall(id, progressListener, progressRequestListener);
         return call;
 
     }
@@ -549,7 +552,7 @@ public class RecordingsApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<RecordingCreateState> showRecordingStateWithHttpInfo(String id) throws ApiException {
-        com.squareup.okhttp.Call call = showRecordingStateValidateBeforeCall(id, null, null);
+        Call call = showRecordingStateValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<RecordingCreateState>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -562,7 +565,7 @@ public class RecordingsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showRecordingStateAsync(String id, final ApiCallback<RecordingCreateState> callback) throws ApiException {
+    public Call showRecordingStateAsync(String id, final ApiCallback<RecordingCreateState> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -583,7 +586,7 @@ public class RecordingsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showRecordingStateValidateBeforeCall(id, progressListener, progressRequestListener);
+        Call call = showRecordingStateValidateBeforeCall(id, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<RecordingCreateState>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

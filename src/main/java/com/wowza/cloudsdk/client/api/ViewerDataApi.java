@@ -31,6 +31,9 @@ import java.io.IOException;
 import java.time.OffsetDateTime;
 import com.wowza.cloudsdk.client.model.UsageViewerDataStreamTarget;
 import com.wowza.cloudsdk.client.model.ViewerDataStreamTarget;
+import okhttp3.Call;
+import okhttp3.Interceptor;
+import okhttp3.Response;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -67,7 +70,7 @@ public class ViewerDataApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call showViewerDataStreamTargetCall(String id, OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public Call showViewerDataStreamTargetCall(String id, OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -98,10 +101,10 @@ public class ViewerDataApi {
         localVarHeaderParams.put("Content-Type", localVarContentType);
 
         if(progressListener != null) {
-            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+            apiClient.getHttpClient().networkInterceptors().add(new Interceptor() {
                 @Override
-                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
-                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                public Response intercept(Interceptor.Chain chain) throws IOException {
+                    Response originalResponse = chain.proceed(chain.request());
                     return originalResponse.newBuilder()
                     .body(new ProgressResponseBody(originalResponse.body(), progressListener))
                     .build();
@@ -114,7 +117,7 @@ public class ViewerDataApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call showViewerDataStreamTargetValidateBeforeCall(String id, OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private Call showViewerDataStreamTargetValidateBeforeCall(String id, OffsetDateTime from, OffsetDateTime to, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -122,7 +125,7 @@ public class ViewerDataApi {
         }
         
 
-        com.squareup.okhttp.Call call = showViewerDataStreamTargetCall(id, from, to, progressListener, progressRequestListener);
+        Call call = showViewerDataStreamTargetCall(id, from, to, progressListener, progressRequestListener);
         return call;
 
     }
@@ -164,7 +167,7 @@ public class ViewerDataApi {
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public ApiResponse<UsageViewerDataStreamTarget> showViewerDataStreamTargetWithHttpInfo(String id, OffsetDateTime from, OffsetDateTime to) throws ApiException {
-        com.squareup.okhttp.Call call = showViewerDataStreamTargetValidateBeforeCall(id, from, to, null, null);
+        Call call = showViewerDataStreamTargetValidateBeforeCall(id, from, to, null, null);
         Type localVarReturnType = new TypeToken<UsageViewerDataStreamTarget>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -179,7 +182,7 @@ public class ViewerDataApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call showViewerDataStreamTargetAsync(String id, OffsetDateTime from, OffsetDateTime to, final ApiCallback<UsageViewerDataStreamTarget> callback) throws ApiException {
+    public Call showViewerDataStreamTargetAsync(String id, OffsetDateTime from, OffsetDateTime to, final ApiCallback<UsageViewerDataStreamTarget> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -200,7 +203,7 @@ public class ViewerDataApi {
             };
         }
 
-        com.squareup.okhttp.Call call = showViewerDataStreamTargetValidateBeforeCall(id, from, to, progressListener, progressRequestListener);
+        Call call = showViewerDataStreamTargetValidateBeforeCall(id, from, to, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<UsageViewerDataStreamTarget>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
